@@ -20,7 +20,7 @@ rel_drug_res=rel_drug_res[,c("dbgap_subject_id", "dbgap_dnaseq_sample",
                              "dbgap_rnaseq_sample", "inhibitor", "ic50", "auc")]
 rel_drug_res$auc=as.numeric(rel_drug_res$auc)
 rel_drug_res$ic50=as.numeric(rel_drug_res$ic50)
-rel_drug_res1=mutate(rel_drug_res, SensitivityCall=ifelse(auc>100, "Resistant", "Sensitive"))
+rel_drug_res1=mutate(rel_drug_res, SensitivityCall=ifelse(auc<100, "Sensitive", "Resistant"))
 dir.create("Outputs")
 saveRDS(rel_cli2,  file="Outputs/RelevantClinical.RDS")
 saveRDS(rel_drug_res1,  file="Outputs/RelevantDrugRes.RDS")
